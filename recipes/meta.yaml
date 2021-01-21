@@ -1,7 +1,7 @@
 {% set setup_data = load_setup_py_data() %}
 
 package:
-  name: codit
+  name: conda_test
   version: {{ setup_data.version }}
 
 source:
