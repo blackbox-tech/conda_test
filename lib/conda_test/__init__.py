@@ -19,6 +19,6 @@ def share_dir():
     raise FileNotFoundError("share directory not found, set your PYTHONPATH or activate your conda environment")
 
 def message():
-    with open(share_dir() / "test_data.yml" , "rt") as fh:
+    with open(share_dir() / "conda_test" / "test_data.yml" , "rt") as fh:
         config = yaml.safe_load(fh)
     return config["message"]
