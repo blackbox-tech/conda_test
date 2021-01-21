@@ -5,12 +5,17 @@ def share_dir():
     """
     # This will resolve to the shared data dir under the current PYTHONPATH or CONDA_PREFIX if it exists
     """
-    path = Path(__file__).parent / "../../share"
-    if path.is_dir():
-        return path
-    conda_env = os.environ.get("CONDA_PREFIX")
-    if conda_env:
-        return Path(conda_env) / f"lib/python{sys.version_info.major}.{sys.version_info.minor}/site-packages/share"
+    mod_path = Path(__file__)
+    share_path = mod_path.parent.parent.parent / "share"
+    if share_path.is_dir():
+        return share_path
+    try:
+        mod_path.relative_to(os.environ.get("CONDA_PREFIX"))
+        share_path = mod_path.parent.parent / "share"
+        if share_path.is_dir():
+            return share_path
+    except:
+        pass
     raise FileNotFoundError("share directory not found, set your PYTHONPATH or activate your conda environment")
 
 def message():
