@@ -15,7 +15,7 @@ def share_dir():
         if share_path.is_dir():
             return share_path
     except:
-        pass
+        pass # this module is not under CONDA_PREFIX
     raise FileNotFoundError("share directory not found, set your PYTHONPATH or activate your conda environment")
 
 def message():
